@@ -1,6 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'com.novoda.bintray-release'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -23,6 +26,10 @@ android {
         }
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 dependencies {
@@ -38,3 +45,20 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
 }
+
+publish {
+    userOrg = 'hehuahaishen'
+    groupId = 'com.shen'
+    artifactId = 'AddressSelector-Kotlin'
+    publishVersion = '0.0.1'
+    desc = 'Address Selector Kotlin'
+    website = 'https://github.com/hehuahaishen/AddressSelector-Kotlin'
+    licences = ['Apache-2.0']
+}
+//userOrg：Bintray网站注册时的用户名。最简单的查看方法就是，登录了Bintray网站之后，看浏览器地址，上面会写着你的用户名，页面上也有。
+//groupId：jCenter上的路径。拿rxjava举例，它的引用方式是
+//    complie io.reactivex.rxjava2:rxjava:2.x.y复制代码
+//    ，那么它的groupId就是io.reactivex.rxjava2。
+//artifactId：这是你在jCenter上项目的名字。一般跟你的项目中module名称一致。
+//publishVersion：发布的版本号。递增的。
+//后面三个，desc是项目描述，website可以填上你项目的git地址，licences几乎是固定的。

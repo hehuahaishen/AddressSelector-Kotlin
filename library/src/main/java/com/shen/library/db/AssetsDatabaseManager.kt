@@ -40,7 +40,7 @@ class AssetsDatabaseManager private constructor(private val mContext: Context) {
 
         fun closeAllDatabase() {
             instance?.let {
-                for ((key, value) in it.mDatabaseMap) {
+                for ((_, value) in it.mDatabaseMap) {
                     value.close()
                 }
                 it.mDatabaseMap.clear()
@@ -101,7 +101,7 @@ class AssetsDatabaseManager private constructor(private val mContext: Context) {
         var iStream: InputStream? = null
         var oStream: OutputStream? = null
         try {
-            val assetManager = mContext!!.assets
+            val assetManager = mContext.assets
             iStream = assetManager.open(assetsSrc)
             oStream = FileOutputStream(targetFilePath)
             val buffer = ByteArray(1024)

@@ -13,8 +13,6 @@ import com.shen.library.db.TableField.ADDRESS_DICT_FIELD_NAME
 import com.shen.library.db.TableField.ADDRESS_DICT_FIELD_PARENTID
 import com.shen.library.db.TableField.FIELD_ID
 import com.shen.library.db.TableField.TABLE_ADDRESS_DICT
-import com.shen.library.widget.LogUtil
-
 import java.util.ArrayList
 
 /**
@@ -174,7 +172,7 @@ class AddressDictManager(context: Context) {
 
             close()
         }
-        return ""
+        return name
     }
 
     /**
@@ -220,7 +218,6 @@ class AddressDictManager(context: Context) {
             }
             close()
         }
-        LogUtil.i("shen", "getCityList3")
         return cityList
     }
 

@@ -11,8 +11,6 @@ import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
-import androidx.annotation.FloatRange
-import androidx.annotation.IntDef
 import androidx.annotation.IntRange
 import androidx.core.content.ContextCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
@@ -163,14 +161,14 @@ class AddressSelector(private val mContext: Context) {
      * 设置字体的背景
      */
     fun setBackgroundColor(colorId: Int) {
-        mLLayoutTab!!.setBackgroundColor(mContext.resources.getColor(colorId))
+        mLLayoutTab!!.setBackgroundColor(ContextCompat.getColor(mContext, colorId))
     }
 
     /**
      * 设置指示器的背景
      */
     fun setIndicatorBackgroundColor(colorId: Int) {
-        mIndicator!!.setBackgroundColor(mContext.resources.getColor(colorId))
+        mIndicator!!.setBackgroundColor(ContextCompat.getColor(mContext, colorId))
     }
 
     /**
@@ -266,7 +264,7 @@ class AddressSelector(private val mContext: Context) {
         mProvinceAdapter!!.setList(list)
         mProvinceAdapter!!.mOnItemClickListener = object : AddressAdapter.OnItemClickListener{
             override fun itemClick(view: View, position: Int) {
-                onItemClick(view, position)
+                onItemClick(position)
             }
         }
         mRv!!.adapter = mProvinceAdapter
@@ -279,7 +277,7 @@ class AddressSelector(private val mContext: Context) {
         adapter.setList(list)
         adapter.mOnItemClickListener = object : AddressAdapter.OnItemClickListener{
             override fun itemClick(view: View, position: Int) {
-                onItemClick(view, position)
+                onItemClick(position)
             }
         }
         if (adapter.listBean.isNotEmpty()) {
@@ -344,7 +342,7 @@ class AddressSelector(private val mContext: Context) {
         }
     }
 
-    fun onItemClick(view: View, position: Int) {
+    fun onItemClick(position: Int) {
         when (mTabIndex) {
             INDEX_TAB_PROVINCE -> {
                 val (id, code, name) = mProvinceAdapter!!.listBean[position]
